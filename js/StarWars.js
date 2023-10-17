@@ -3,6 +3,8 @@
 //     // .then(json=>console.log(json));
 //     .then(json=>data = json.results)
 //     .then(data=>afficherPlanetes(data));
+let arrayPlanetesSelect = [];
+
 
 fetch('https://swapi.dev/api/films/')
     .then(response=>response.json())
@@ -24,15 +26,20 @@ function afficherFilms(data){
 
     liste.addEventListener('change', function(evenement)
     {
+        arrayPlanetesSelect=[];
+        document.querySelector('option[value=base]').classList.add('noDisplay');
         let objCible = evenement.currentTarget;
         console.log(objCible.value)
         let arrayPlanetes = data[objCible.value].planets;
         fetchPlanetes(arrayPlanetes, objCible.value)
     });
 }
+
+
 function fetchPlanetes(array, id){
     console.log(array);
     console.log(id);
+    let test='';
 for(cpt=0; cpt<array.length;cpt++) {
     fetch(array[cpt])
         .then(response => response.json())
@@ -43,5 +50,6 @@ for(cpt=0; cpt<array.length;cpt++) {
 }
 
 function afficherPlanetes(data){
-console.log(data);
+    arrayPlanetesSelect.push(data)
+console.log(arrayPlanetesSelect);
 }
