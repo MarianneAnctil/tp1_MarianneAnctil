@@ -2,6 +2,8 @@
 let arrayPlanetesSelect = [];
 let noImg=0;
 let intervale;
+let valeurVitesse=null;
+let statutIntervale = true;
 
 let nomPLanete = document.createElement('h2');
 nomPLanete.innerHTML='';
@@ -53,7 +55,13 @@ document.getElementById('vitesse').appendChild(vitesseRapide);
 
 document.getElementById('btnPrecedent').addEventListener('click', changerImage);
 document.getElementById('btnSuivant').addEventListener('click', changerImage);
-document.getElementById('btnArret').addEventListener('click', arreterVitesse);
+
+if(statutIntervale === true) {
+    document.getElementById('btnArret').addEventListener('click', arreterVitesse);
+} else if(statutIntervale === false){
+    document.getElementById('btnArret').addEventListener('click', demarrerVitesse);
+
+}
 
 
 
@@ -92,7 +100,7 @@ function afficherFilms(data){
         console.log(objCible.value)
         let arrayPlanetes = data[objCible.value].planets;
         fetchPlanetes(arrayPlanetes, objCible.value);
-        recupIntervale(4000);
+        recupIntervale(3000);
     });
 }
 
@@ -146,9 +154,9 @@ function recupIntervale(vitesse){
 
     document.getElementById('vitesse').addEventListener('change',function(evenement){
         console.log('recup change')
-        arreterVitesse();
+        clearInterval(intervale);
         let objCible = evenement.currentTarget;
-        let valeurVitesse = objCible.value
+        valeurVitesse = objCible.value
         intervale = setInterval(modifierVitesse, valeurVitesse);
     })
 }
@@ -163,6 +171,30 @@ function modifierVitesse(){
     nomPLanete.innerHTML=arrayPlanetesSelect[noImg];
 }
 
-function arreterVitesse(){
-    clearInterval(intervale);
+function demarrerVitesse(){
+    document.getElementById('btnArret').removeEventListener('click', demarrerVitesse);
+    document.getElementById('btnArret').addEventListener('click', arreterVitesse);
+    document.getElementById('vitesse').classList.remove('noDisplay');
+    statutIntervale=true;
+    if(valeurVitesse===null){
+        recupIntervale(3000);
+    }else{
+        recupIntervale(valeurVitesse);
+    }
+
+
+    btnArret.innerHTML='Arrêter';
+    console.log(valeurVitesse);
 }
+
+function arreterVitesse(){
+    document.getElementById('btnArret').removeEventListener('click', arreterVitesse);
+    document.getElementById('btnArret').addEventListener('click', demarrerVitesse);
+    document.getElementById('vitesse').classList.add('noDisplay');
+    statutIntervale=false;
+    clearInterval(intervale);
+    btnArret.innerHTML='Démarrer';
+    console.log(statutIntervale)
+}
+
+console.log(statutIntervale);
