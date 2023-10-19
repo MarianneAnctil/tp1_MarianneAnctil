@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr-CA">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Visionneuse Star Wars - TP1</title>
-  <link rel="stylesheet" href="styles/main.css" />
-  <script defer src="js/StarWars.js"></script>
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Visionneuse Star Wars - TP1</title>
+    <link href="styles/main.css" rel="stylesheet"/>
+    <script defer src="js/StarWars.js"></script>
 </head>
-<body>
-<header>
-  <h1>Visionneuse Star Wars</h1>
+<body class="visionneuseBody">
+<header class="header">
+    <h1>Visionneuse Star Wars</h1>
+    <span class="underline"></span>
 </header>
-<main>
-  <form method="get" action="#">
-    <label for="films">Sélectionner un film pour voir les planètes: </label>
+<main class="main">
+    <form action="#" class="formSelect" method="get">
+        <label class="label" for="films">Sélectionner un film pour voir les planètes: </label>
 
-    <select id="films" name="films">
-<option value="base">Sélectionner un films</option>
-    </select>
-  </form>
-<section id="visionneuse">
-  <div id="image">
+        <select id="films" name="films">
+            <option value="base">Sélectionner un films</option>
+        </select>
+    </form>
+    <section class="visionneuse" id="visionneuse">
+        <div class="img" id="image">
+        </div>
+        <div class="buttons" id="buttons">
+        </div>
+        <form action="#" class="formVitesse" method="get">
+            <label class="label" for="vitesse"></label>
 
-  </div>
-  <form method="get" action="#">
-    <label for="vitesse"></label>
-
-    <select id="vitesse" name="vitesse" class="noDisplay">
-    </select>
-  </form>
-</section>
+            <select class="noDisplay" id="vitesse" name="vitesse">
+            </select>
+        </form>
+    </section>
 
 </main>
+<footer class="footer"></footer>
 </body>
+
 </html>

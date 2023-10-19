@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Space+Grotesk:wght@700&display=swap');
+
 #liste ul {
     display: flex;
     flex-wrap: wrap;
@@ -53,6 +55,140 @@
     border-radius: 8px;
 }
 
-.noDisplay{
-    display:none;
+
+/** VISIONNEUSE **/
+
+.noDisplay {
+    display: none;
 }
+
+
+.visionneuseBody {
+    background-color: #1b1b1b;
+    font-family: 'montSerrat', Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    color: white;
+}
+
+
+.header h1 {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 3.8rem;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 10px;
+
+}
+
+.header .underline {
+    display: flex;
+    margin: auto;
+    width: 660px;
+    height: 6px;
+    background-color: #FFE81F;
+}
+
+.formSelect {
+    margin-top: 50px;
+    /*margin-left: 270px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.formSelect .label {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.formSelect select {
+    max-width: 350px;
+    border-radius: 18px;
+    padding: 10px;
+    background-color: #1b1b1b;
+    color: white;
+    font-size: 1.4rem;
+    border-width: 3px;
+    border-color: white;
+}
+
+.img h2 {
+    background-color: rgb(27,27,27,40%);
+    padding: 4px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    position: absolute;
+    top:55%
+}
+
+.img .underline {
+    position: absolute;
+    top:63%;
+    margin: auto;
+    width: 265px;
+    height: 6px;
+    background-color: #FFE81F;
+}
+
+.img img {
+    margin: 50px 0;
+    width: 1200px;
+
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+.buttons button {
+    max-width: 350px;
+    border-radius: 12px;
+    padding: 5px 18px;
+    background-color: #1b1b1b;
+    color: white;
+    font-size: 1.4rem;
+    border-width: 3px;
+    border-color: white;
+}
+
+.formVitesse {
+    display: flex;
+    margin-left: 30px;
+}
+
+.formVitesse select {
+    max-width: 350px;
+    border-radius: 12px;
+    padding: 5px 8px;
+    background-color: #1b1b1b;
+    color: white;
+    font-size: 1.4rem;
+    border-width: 3px;
+    border-color: white;
+    margin: 18px auto;
+}
+
+.footer {
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
