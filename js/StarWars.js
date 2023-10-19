@@ -1,11 +1,9 @@
-// fetch('https://swapi.dev/api/planets/')
-//     .then(response=>response.json())
-//     // .then(json=>console.log(json));
-//     .then(json=>data = json.results)
-//     .then(data=>afficherPlanetes(data));
+
 let arrayPlanetesSelect = [];
 let noImg=0;
 let intervale;
+let valeurVitesse=null;
+let statutIntervale = true;
 
 let nomPLanete = document.createElement('h2');
 nomPLanete.innerHTML='';
@@ -39,14 +37,17 @@ document.getElementById('image').appendChild(btnSuivant);
 
 let vitesseLent = document.createElement('option');
 vitesseLent.innerHTML = 'Lent';
+vitesseLent.value = '3000';
 document.getElementById('vitesse').appendChild(vitesseLent);
 
 let vitesseMoyen = document.createElement('option');
 vitesseMoyen.innerHTML = 'Moyen';
+vitesseMoyen.value = '1500';
 document.getElementById('vitesse').appendChild(vitesseMoyen);
 
 let vitesseRapide = document.createElement('option');
 vitesseRapide.innerHTML = 'Rapide';
+vitesseRapide.value = '700';
 document.getElementById('vitesse').appendChild(vitesseRapide);
 
 
@@ -54,6 +55,15 @@ document.getElementById('vitesse').appendChild(vitesseRapide);
 
 document.getElementById('btnPrecedent').addEventListener('click', changerImage);
 document.getElementById('btnSuivant').addEventListener('click', changerImage);
+
+if(statutIntervale === true) {
+    document.getElementById('btnArret').addEventListener('click', arreterVitesse);
+} else if(statutIntervale === false){
+    document.getElementById('btnArret').addEventListener('click', demarrerVitesse);
+
+}
+
+
 
 
 fetch('https://swapi.dev/api/films/')
@@ -89,7 +99,8 @@ function afficherFilms(data){
         let objCible = evenement.currentTarget;
         console.log(objCible.value)
         let arrayPlanetes = data[objCible.value].planets;
-        fetchPlanetes(arrayPlanetes, objCible.value)
+        fetchPlanetes(arrayPlanetes, objCible.value);
+        recupIntervale(3000);
     });
 }
 
@@ -135,3 +146,55 @@ function changerImage(evenement){
     nomPLanete.innerHTML=arrayPlanetesSelect[noImg];
     console.log(noImg)
 }
+
+
+function recupIntervale(vitesse){
+    intervale = setInterval(modifierVitesse, vitesse);
+    console.log('recup')
+
+    document.getElementById('vitesse').addEventListener('change',function(evenement){
+        console.log('recup change')
+        clearInterval(intervale);
+        let objCible = evenement.currentTarget;
+        valeurVitesse = objCible.value
+        intervale = setInterval(modifierVitesse, valeurVitesse);
+    })
+}
+
+function modifierVitesse(){
+    console.log('modifier')
+    noImg++;
+    if(noImg > arrayPlanetesSelect.length-1){
+        noImg=0;
+    }
+    nouvImg.src = '../images/' + arrayPlanetesSelect[noImg] + '.jpeg';
+    nomPLanete.innerHTML=arrayPlanetesSelect[noImg];
+}
+
+function demarrerVitesse(){
+    document.getElementById('btnArret').removeEventListener('click', demarrerVitesse);
+    document.getElementById('btnArret').addEventListener('click', arreterVitesse);
+    document.getElementById('vitesse').classList.remove('noDisplay');
+    statutIntervale=true;
+    if(valeurVitesse===null){
+        recupIntervale(3000);
+    }else{
+        recupIntervale(valeurVitesse);
+    }
+
+
+    btnArret.innerHTML='Arrêter';
+    console.log(valeurVitesse);
+}
+
+function arreterVitesse(){
+    document.getElementById('btnArret').removeEventListener('click', arreterVitesse);
+    document.getElementById('btnArret').addEventListener('click', demarrerVitesse);
+    document.getElementById('vitesse').classList.add('noDisplay');
+    statutIntervale=false;
+    clearInterval(intervale);
+    btnArret.innerHTML='Démarrer';
+    console.log(statutIntervale)
+}
+
+console.log(statutIntervale);
